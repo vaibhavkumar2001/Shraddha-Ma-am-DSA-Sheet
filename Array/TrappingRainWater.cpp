@@ -32,3 +32,28 @@ public:
 
 // Now I am going to Write down the most Optimal Approach
 //which is Two pointer approach
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        int n = height.size();
+        int left = 0,right = n - 1;
+        int leftMax = 0;
+        int rightMax = 0;
+        int ans = 0;
+        while(left < right) {
+            leftMax = max(leftMax,height[left]);
+            rightMax = max(rightMax,height[right]);
+            if(leftMax < rightMax) {
+                //iska mtlb ki left part chota h mujhe chote se hi mtlb h 
+                ans += (leftMax - height[left]);
+                left++;
+            }
+            else {
+                //iska mtlb ki right part chota h
+                ans += (rightMax - height[right]);
+                right--;
+            }
+        }
+        return ans;
+    }
+};

@@ -23,3 +23,20 @@ public:
 };
 
 // Most Optimize Approach 
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n = height.size();
+        int left = 0;
+        int right = n - 1;
+        int maxWater = 0;
+        while(left < right) {
+            int width = right - left;
+            int ht = min(height[left],height[right]);
+            int areaht = width * ht;
+            maxWater = max(maxWater,areaht);
+            height[left] < height[right] ? left++ : right--;
+        }
+        return maxWater;
+    }
+};

@@ -38,3 +38,23 @@ public:
 
 // THIS IS THE SOLUTION WHOSE TIME COMPLEXITY IS O(n logn) and Space complexity of this solutionn is O(n) Which can be futher optimize to O(1) which is In-Place method
 
+//MOst optimal Solution
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(),intervals.end());
+        int index = 0;
+        for(int i = 1;i < intervals.size();i++) {
+            if(intervals[index][1] >= intervals[i][0]) {
+                //toh ab main merge kr skta hoon
+                intervals[index][1] = max(intervals[index][1], intervals[i][1]); 
+            }
+            else {
+                index++;
+                intervals[index] = intervals[i];
+            }
+        }
+        intervals.resize(index + 1);
+        return intervals;
+    }
+};
